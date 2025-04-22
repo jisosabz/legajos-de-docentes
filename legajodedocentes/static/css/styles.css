@@ -1,0 +1,116 @@
+/* Variables base */
+:root {
+    --color-primario: #48e;
+    --color-secundario: #333;
+    --color-texto: #f8f9fa;
+    --color-hover: #cce6ff;
+    --color-footer: #222;
+}
+
+/* Reset básico */
+body {
+    background-color: #f4f8ff;
+    color: var(--color-secundario);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Navbar personalizado */
+.navbar {
+    background-color: var(--color-primario) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+    color: white !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--color-hover) !important;
+}
+
+.navbar-nav .nav-link.active {
+    color: #ffd !important;
+}
+
+/* Cambiar color al hacer scroll (opcional) */
+.navbar.scrolled {
+    background-color: #369 !important;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilo del contenido principal */
+main {
+    padding: 2rem;
+}
+
+/* Tarjetas */
+.card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Botones */
+.btn-primary {
+    background-color: var(--color-primario);
+    border-color: var(--color-primario);
+    color: #fff;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #3399ff;
+    border-color: #3399ff;
+}
+
+/* Footer */
+footer {
+    background-color: var(--color-footer);
+    color: var(--color-texto);
+    padding: 1rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Enlaces del footer */
+footer a {
+    color: var(--color-primario);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Tablas */
+.table thead {
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #eaf3ff;
+}
+
+/* Formularios */
+.form-control:focus {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 0.2rem rgba(72, 136, 238, 0.25);
+}
+
+/* Títulos */
+h1, h2, h3 {
+    color: var(--color-primario);
+    font-weight: 600;
+}

@@ -1,0 +1,46 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}Docentes{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Lista de Docentes</h2>
+{#barra de busqueda de docentes#}
+<form method="get" action="{% url 'docente' %}" class="form-search mb-4">
+    <div class="input-group">
+        <input type="text" name="search" placeholder="Buscar Docente..." class="form-control" aria-label="Buscar Docente">
+        <div class="input-group-append">
+            <input type="submit" value="Buscar" class="btn btn-primary">
+        </div>
+    </div>
+</form>
+{#acciones principales#}
+<div class="acciones mt-4 mb-4">
+    <a href="{% url 'docente' %}" class="btn btn-outline-primary btn-sm me-2">Ver Todos</a>
+    <a href="{% url 'docente_create' %}" class="btn btn-primary btn-sm">Añadir Docente</a>
+</div>
+{#aca se listan los docentes#}
+    {% if docentes %}
+        <div class="list-group">
+            {% for docente in docentes %}
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="mb-1">{{ docente.nombre }} {{ docente.apellido }}</h5>
+                        <small class="text-muted">CI: {{ docente.ci }}</small><br>
+                        <small class="text-muted">Email: {{ docente.email }}</small>
+                    </div>
+                    <div class="btn-group" role="group">
+                        <a href="{% url 'docente_view' id=docente.id %}" class="btn btn-outline-primary btn-sm">Ver</a>
+                        <a href="{% url 'docente_edit' id=docente.id %}" class="btn btn-outline-secondary btn-sm">Editar</a>
+{#                        <a href="{% url 'docente_delete' id=docente.id %}" class="btn btn-outline-danger btn-sm">Borrar</a>#}
+                        {% include 'layout/partials/boton_delete.html' %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info" role="alert">
+            No hay docentes cargados.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
