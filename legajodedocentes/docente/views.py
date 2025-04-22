@@ -69,15 +69,13 @@ def create(request):
 
     return HttpResponse('Método no soportado.')
 
-
-# def delete(request, id):
-#     docente = Docente.objects.get(id=id)
-#     docente.delete()
-#     return redirect('docente')
-
 @require_POST
 def delete(request, id):
     docente = Docente.objects.get(id=id)
     docente.delete()
     messages.success(request, 'Docente eliminado correctamente.')
     return redirect('docente')
+
+
+def documento(request):
+    return HttpResponse("probando ruta documentos")
