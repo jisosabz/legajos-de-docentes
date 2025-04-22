@@ -76,6 +76,6 @@ def delete(request, id):
     messages.success(request, 'Docente eliminado correctamente.')
     return redirect('docente')
 
-
+# aca empieza todo lo relacionado a documentos
 def documento(request):
-    return HttpResponse("probando ruta documentos")
+    return render(request, 'documentos/index.html',{})

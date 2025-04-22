@@ -24,6 +24,6 @@ from legajodedocentes import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('docente', include('docente.urls')),
+    path('docente/', include('docente.urls')),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
