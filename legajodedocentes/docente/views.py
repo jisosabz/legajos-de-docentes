@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.views.decorators.http import require_POST
 
 from .forms import DocenteForm
-from .models import Docente
+from .models import Docente, Documento
 
 def index(request):
     # para listar todos los docentes o si se ingresa su nombre o su ci para filtrarlos por ello
@@ -78,4 +78,8 @@ def delete(request, id):
 
 # aca empieza todo lo relacionado a documentos
 def documento(request):
-    return render(request, 'documentos/index.html',{})
+    documentos = Documento.objects.all()
+    context = {
+        'documentos': documentos
+    }
+    return render(request, 'documentos/index.html',context)
