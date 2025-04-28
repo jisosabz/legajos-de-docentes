@@ -1,7 +1,7 @@
 # 📌 Legajos de Docentes
 
 ## 📖 Descripción
-Este es un sistema de gestión de legajos para docentes, desarrollado con **HTML, CSS, JavaScript, Django y MySQL**. Su objetivo es administrar los documentos de los docentes, controlar su antigüedad y gestionar notificaciones sobre vencimientos de documentos.
+Este es un sistema de gestión de legajos para docentes, desarrollado con **HTML, CSS, JavaScript, Django y PostgreSQL**. Su objetivo es administrar los documentos de los docentes, controlar su antigüedad y gestionar notificaciones sobre vencimientos de documentos.
 
 ## 🛠️ Tecnologías Usadas
 - **Frontend**: HTML, CSS, JavaScript
