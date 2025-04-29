@@ -75,7 +75,7 @@ class TipoDocumento(models.Model):
 class Documento(models.Model):
     nombre = models.CharField(max_length=100)
     fecha_emision = models.DateField()
-    fecha_vencimiento = models.DateField()
+    fecha_vencimiento = models.DateField(null=True, blank=True)
     archivo = models.FileField(
         upload_to='documentos/',
         validators=[FileExtensionValidator(allowed_extensions=['pdf', 'jpg', 'png', 'doc', 'docx'])],
