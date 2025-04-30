@@ -3,11 +3,13 @@
 {% block title %}
     Documentos
 {% endblock %}
-
 {% block content %}
-    <h1 class="text-center my-4">Lista de documentos</h1>
-
-    <div class="container">
+    <div class="container mt-4">
+        <h2 class="mb-4">Lista de Documentos</h2>
+        {# barra de busqueda #}
+        <form method="get" action="#" class="form-search mb-4">
+            {% include 'layout/partials/barra_de_busqueda.html' %}
+        </form>
         <div class="row">
             {% for documento in documentos %}
                 <div class="col-md-4 mb-4">

@@ -6,12 +6,7 @@
     <h2 class="mb-4">Lista de Docentes</h2>
 {#barra de busqueda de docentes#}
 <form method="get" action="{% url 'docente' %}" class="form-search mb-4">
-    <div class="input-group">
-        <input type="text" name="search" placeholder="Buscar Docente..." class="form-control" aria-label="Buscar Docente">
-        <div class="input-group-append">
-            <input type="submit" value="Buscar" class="btn btn-primary">
-        </div>
-    </div>
+    {% include 'layout/partials/barra_de_busqueda.html' %}
 </form>
 {#acciones principales#}
 <div class="acciones mt-4 mb-4">
