@@ -83,3 +83,7 @@ def documento(request):
         'documentos': documentos
     }
     return render(request, 'documentos/index.html',context)
+
+
+def create_document(request):
+    return HttpResponse('crear documento')

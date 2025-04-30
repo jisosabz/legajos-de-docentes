@@ -12,5 +12,6 @@ urlpatterns = [
 
     # aca esto son las rutas de los documentos
     path("documento/",views.documento, name="documento"),
+    path("create_document/", views.create_document, name="create_document"),
 
 ]

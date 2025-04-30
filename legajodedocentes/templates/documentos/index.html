@@ -11,12 +11,14 @@
             {% include 'layout/partials/barra_de_busqueda.html' %}
         </form>
         {# fin barra de busqueda #}
+{#----------------------------------------------------------------------------------------------------------------#}
         {# acciones principales #}
         <div class="acciones mt-4 mb-4">
             <a href="{% url 'documento' %}" class="btn btn-outline-primary btn-sm me-2">Ver Todos</a>
-            <a href="#" class="btn btn-primary btn-sm">Añadir Documento</a>
+            <a href="{% url 'create_document' %}" class="btn btn-primary btn-sm">Añadir Documento</a>
         </div>
         {# fin acciones principales #}
+{#----------------------------------------------------------------------------------------------------------------#}
         {# lista de documentos #}
         <div class="row">
             {% for documento in documentos %}
