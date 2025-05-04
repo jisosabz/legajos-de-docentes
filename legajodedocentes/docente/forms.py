@@ -1,5 +1,6 @@
 
 from django.forms import ModelForm, TextInput, EmailInput, DateInput, Select
+from django.forms.widgets import ClearableFileInput
 from docente.models import Docente, Documento
 
 
@@ -34,10 +35,7 @@ class DocumentoForm(ModelForm):
                 'type': 'date',
                 'class': 'form-control'
             }),
-            'archivo': TextInput(attrs={
-                'type': 'file',
-                'class': 'form-control'
-            }),
+            'archivo': ClearableFileInput(attrs={'class': 'form-control'}),
             'docente': Select(attrs={'class': 'form-select'}),
             'tipo_documento': Select(attrs={'class': 'form-select'}),
         }

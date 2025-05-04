@@ -89,5 +89,15 @@ def create_document(request):
     if request.method == 'GET':
         form = DocumentoForm()
         return render(request, 'documentos/create.html', {'form': form})
+    elif request.method == 'POST':
+        form = DocumentoForm(request.POST, request.FILES)  # <- para cargar archivos
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Documento agregado correctamente.')
+            return redirect('documento')
+        else:
+            messages.error(request, 'Hubo un error al agregar el documento. Revisa los campos.')
+
+        return render(request, 'documentos/create.html', {'form': form})
     else:
         return HttpResponse('Método no soportado.')
