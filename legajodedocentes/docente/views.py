@@ -5,7 +5,7 @@ from django.contrib import messages
 
 from django.views.decorators.http import require_POST
 
-from .forms import DocenteForm
+from .forms import DocenteForm, DocumentoForm
 from .models import Docente, Documento
 
 def index(request):
@@ -86,4 +86,8 @@ def documento(request):
 
 
 def create_document(request):
-    return HttpResponse('crear documento')
+    if request.method == 'GET':
+        form = DocumentoForm()
+        return render(request, 'documentos/create.html', {'form': form})
+    else:
+        return HttpResponse('Método no soportado.')
