@@ -62,7 +62,11 @@
                                         <button class="btn btn-outline-secondary btn-sm" disabled>Sin archivo</button>
                                     {% endif %}
                                     <a href="{% url 'edit_document' id=documento.id %}" class="btn btn-outline-secondary btn-sm">Editar</a>
-                                    <a href="#" class="btn btn-outline-danger btn-sm">Borrar</a>
+                                    {#<a href="#" class="btn btn-outline-danger btn-sm">Borrar</a>#}
+                                    <form action="{% url 'delete_document' id=documento.id %}" method="post" onsubmit="return confirm('¿Estás seguro que deseas eliminar este docente?');" style="display: inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-outline-danger btn-sm">Borrar</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

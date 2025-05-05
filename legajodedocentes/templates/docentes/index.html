@@ -28,8 +28,10 @@
                     <div class="btn-group" role="group">
                         <a href="{% url 'docente_view' id=docente.id %}" class="btn btn-outline-primary btn-sm">Ver</a>
                         <a href="{% url 'docente_edit' id=docente.id %}" class="btn btn-outline-secondary btn-sm">Editar</a>
-{#                        <a href="{% url 'docente_delete' id=docente.id %}" class="btn btn-outline-danger btn-sm">Borrar</a>#}
-                        {% include 'layout/partials/boton_delete.html' %}
+                        <form action="{% url 'docente_delete' id=docente.id %}" method="post" onsubmit="return confirm('¿Estás seguro que deseas eliminar este docente?');" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-danger btn-sm">Borrar</button>
+                        </form>
                     </div>
                 </div>
             {% endfor %}

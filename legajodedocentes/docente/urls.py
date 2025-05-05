@@ -13,6 +13,7 @@ urlpatterns = [
     # aca esto son las rutas de los documentos
     path("documento/",views.documento, name="documento"),
     path("create_document/", views.create_document, name="create_document"),
-    path("edit_document/<int:id>", views.edit_document, name="edit_document")
+    path("edit_document/<int:id>", views.edit_document, name="edit_document"),
+    path("delete_document/<int:id>/",views.delete_document, name="delete_document"),
 
 ]

@@ -123,5 +123,9 @@ def edit_document(request, id):
     else:
         return HttpResponse('Método no soportado', status=405)
 
-
-
+@require_POST
+def delete_document(request, id):
+    documento = Documento.objects.get(id=id)
+    documento.delete()
+    messages.success(request, 'Documento eliminado correctamente.')
+    return redirect('documento')
