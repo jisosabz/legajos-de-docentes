@@ -12,7 +12,7 @@ def index(request):
     # para listar todos los docentes o si se ingresa su nombre o su ci para filtrarlos por ello
     query = request.GET.get('search', '')
     docentes = Docente.objects.filter(
-        Q(nombre__icontains=query) | Q(ci__icontains=query) | Q(nivel__nombre__icontains=query)
+        Q(nombre__icontains=query) |Q(apellido__icontains=query)| Q(ci__icontains=query) | Q(nivel__nombre__icontains=query)
     )
     context = {
         'docentes': docentes

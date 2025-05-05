@@ -1,8 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
     <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="{% url 'index' %}">
-            {# <img src="https://source.unsplash.com/40x40/?university" alt="logo" class="rounded-circle me-2">#}
-            Legajos de Docentes
+        <a class="navbar-brand d-flex align-items-center fw-bold" href="{% url 'index' %}">
+            <i class="fas fa-file-alt me-2"></i> LegajosDocentes
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
@@ -11,16 +10,24 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'index' %}">Inicio</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'index' %}active{% endif %}" href="{% url 'index' %}">
+                        <i class="fas fa-home me-1"></i>Inicio
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'docente' %}">Docentes</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'documento' %}active{% endif %}" href="{% url 'documento' %}">
+                        <i class="fas fa-folder me-1"></i>Documentos
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'documento' %}">Documentos</a>
+                    <a class="nav-link {% if request.resolver_match.url_name == 'docente' %}active{% endif %}" href="{% url 'docente' %}">
+                        <i class="fas fa-user-tie me-1"></i>Docentes
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Notificaciones</a>
+                    <a class="nav-link" href="#">
+                        <i class="fas fa-bell me-1"></i>Notificaciones
+                    </a>
                 </li>
             </ul>
         </div>
