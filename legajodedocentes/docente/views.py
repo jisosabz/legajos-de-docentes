@@ -12,13 +12,12 @@ def index(request):
     # para listar todos los docentes o si se ingresa su nombre o su ci para filtrarlos por ello
     query = request.GET.get('search', '')
     docentes = Docente.objects.filter(
-        Q(nombre__icontains=query) | Q(ci__icontains=query)
+        Q(nombre__icontains=query) | Q(ci__icontains=query) | Q(nivel__nombre__icontains=query)
     )
     context = {
         'docentes': docentes
     }
     return render(request, 'docentes/index.html', context)
-
 
 def view(request,id):
     docente = Docente.objects.get(id=id)
@@ -26,7 +25,6 @@ def view(request,id):
         'docente': docente
     }
     return render(request,'docentes/details.html', context)
-
 
 def edit(request, id):
     docente = Docente.objects.get(id=id)
@@ -103,3 +101,27 @@ def create_document(request):
         return render(request, 'documentos/create.html', {'form': form})
     else:
         return HttpResponse('Método no soportado.')
+
+def edit_document(request, id):
+    documento = Documento.objects.get(id=id)
+
+    if request.method == 'GET':
+        form = DocumentoForm(instance=documento)
+        return render(request, 'documentos/edit.html', {'form': form, 'id': id})
+
+    elif request.method == 'POST':
+        form = DocumentoForm(request.POST, request.FILES, instance=documento)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Documento Actualizado Correctamente')
+        else:
+            print(form.errors)  # Esto mostrará los errores en consola para ayudarte a depurar
+            messages.error(request, 'Revisá los errores del formulario.')
+
+        return render(request, 'documentos/edit.html', {'form': form, 'id': id})
+
+    else:
+        return HttpResponse('Método no soportado', status=405)
+
+
+

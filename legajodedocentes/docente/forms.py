@@ -14,7 +14,7 @@ class DocenteForm(ModelForm):
             'ci': TextInput(attrs={'class': 'form-control'}),
             'email': EmailInput(attrs={'class': 'form-control'}),
             'telefono': TextInput(attrs={'class': 'form-control'}),
-            'fecha_ingreso': DateInput(attrs={
+            'fecha_ingreso': DateInput( format='%Y-%m-%d', attrs={
                 'type': 'date',
                 'class': 'form-control'
             }),
@@ -27,11 +27,11 @@ class DocumentoForm(ModelForm):
         fields = '__all__'
         widgets = {
             'nombre': TextInput(attrs={'class': 'form-control'}),
-            'fecha_emision': DateInput(attrs={
+            'fecha_emision': DateInput(format='%Y-%m-%d', attrs={
                 'type': 'date',
                 'class': 'form-control'
             }),
-            'fecha_vencimiento': DateInput(attrs={
+            'fecha_vencimiento': DateInput( format='%Y-%m-%d', attrs={
                 'type': 'date',
                 'class': 'form-control'
             }),

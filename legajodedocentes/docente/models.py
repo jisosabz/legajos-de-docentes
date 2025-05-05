@@ -25,9 +25,9 @@ class NivelDocente(models.Model):
 
 # ────────────────────────────────────────────────
 class Docente(models.Model):
-    ci = models.CharField(max_length=15, unique=True)
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
+    ci = models.CharField(max_length=15, unique=True)
     email = models.EmailField(unique=True)
     telefono = models.CharField(max_length=20, blank=True, null=True)
     fecha_ingreso = models.DateField()
