@@ -8,11 +8,13 @@
 <form method="get" action="{% url 'docente' %}" class="form-search mb-4">
     {% include 'layout/partials/barra_de_busqueda.html' %}
 </form>
+{#----------------------------------------------------------------------------------------------------------------#}
 {#acciones principales#}
 <div class="acciones mt-4 mb-4">
     <a href="{% url 'docente' %}" class="btn btn-outline-primary btn-sm me-2">Ver Todos</a>
     <a href="{% url 'docente_create' %}" class="btn btn-primary btn-sm">Añadir Docente</a>
 </div>
+{#----------------------------------------------------------------------------------------------------------------#}
 {#aca se listan los docentes#}
     {% if docentes %}
         <div class="list-group">

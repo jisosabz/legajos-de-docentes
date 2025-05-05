@@ -78,12 +78,14 @@ def delete(request, id):
 
 # aca empieza todo lo relacionado a documentos
 def documento(request):
-    documentos = Documento.objects.all()
+    query = request.GET.get('search', '')
+    documentos = Documento.objects.filter(
+        Q(nombre__icontains=query) | Q(docente__nombre__icontains=query) | Q(docente__ci__icontains=query) | Q(tipo_documento__nombre__icontains=query)
+    )
     context = {
         'documentos': documentos
     }
-    return render(request, 'documentos/index.html',context)
-
+    return render(request, 'documentos/index.html', context)
 
 def create_document(request):
     if request.method == 'GET':
