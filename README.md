@@ -4,7 +4,7 @@
 Este es un sistema de gestión de legajos para docentes, desarrollado con **HTML, CSS, JavaScript, Django y PostgreSQL**. Su objetivo es administrar los documentos de los docentes, controlar su antigüedad y gestionar notificaciones sobre vencimientos de documentos.
 
 ## 🛠️ Tecnologías Usadas
-- **Frontend**: HTML, CSS, JavaScript
+- **Frontend**: HTML, CSS, Bootstrap, JavaScript
 - **Backend**: Django
 - **Base de Datos**: PostgreSQL
 - **Control de Versiones**: Git & GitHub
