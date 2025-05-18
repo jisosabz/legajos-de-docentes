@@ -78,7 +78,7 @@ def delete(request, id):
 def documento(request):
     query = request.GET.get('search', '')
     documentos = Documento.objects.filter(
-        Q(nombre__icontains=query) | Q(docente__nombre__icontains=query) | Q(docente__ci__icontains=query) | Q(tipo_documento__nombre__icontains=query)
+        Q(nombre__icontains=query) | Q(docente__nombre__icontains=query)|Q(docente__apellido__icontains=query) | Q(docente__ci__icontains=query) | Q(tipo_documento__nombre__icontains=query)
     )
     context = {
         'documentos': documentos

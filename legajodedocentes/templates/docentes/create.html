@@ -32,30 +32,3 @@
     </div>
 </div>
 {% endblock %}
-
-
-
-
-
-{#{% extends 'layout/base.html' %}#}
-{#{% block title %}Agregar Docente{% endblock %}#}
-{#{% block content %}#}
-    {# acciones #}
-{#    <div>#}
-{#        <a href="{% url 'docente' %}">Volver Atrás</a>#}
-{#    </div>#}
-    {# mensaje de exito #}
-{#    {% if messages %}#}
-{#        <ul class="messages">#}
-{#            {% for message in messages %}#}
-{#                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
-{#            {% endfor %}#}
-{#        </ul>#}
-{#    {% endif %}#}
-    {# formulario #}
-{#    <form action="{% url 'docente_create'%}" method="post">#}
-{#        {% csrf_token %}#}
-{#        {{ form }}#}
-{#        <input type="submit" value="Enviar">#}
-{#    </form>#}
-{#{% endblock %}#}

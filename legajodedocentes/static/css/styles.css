@@ -1,28 +1,35 @@
-/* Variables base */
+/* Variables base - Tema oscuro GitHub */
 :root {
-    --color-primario: #48e;
-    --color-secundario: #333;
-    --color-texto: #f8f9fa;
-    --color-hover: #cce6ff;
-    --color-footer: #222;
+    --color-primario: #58a6ff;
+    --color-secundario: #c9d1d9;
+    --color-texto: #f0f6fc;
+    --color-hover: #1f6feb;
+    --color-footer: #161b22;
+
+    --color-fondo: #0d1117;
+    --color-fondo-secundario: #161b22;
+    --color-borde: #30363d;
+    --color-placeholder: #8b949e;
+    --color-verde: #238636;
+    --color-verde-hover: #2ea043;
 }
 
 /* Reset básico */
 body {
-    background-color: #f4f8ff;
+    background-color: var(--color-fondo);
     color: var(--color-secundario);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 /* Navbar personalizado */
 .navbar {
-    background-color: var(--color-primario) !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-fondo-secundario) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .navbar-brand,
 .navbar-nav .nav-link {
-    color: white !important;
+    color: var(--color-texto) !important;
     font-weight: 500;
     transition: color 0.3s ease;
 }
@@ -35,9 +42,8 @@ body {
     color: #ffd !important;
 }
 
-/* Cambiar color al hacer scroll (opcional) */
 .navbar.scrolled {
-    background-color: #369 !important;
+    background-color: #1a1f24 !important;
     transition: background-color 0.3s ease;
 }
 
@@ -48,29 +54,31 @@ main {
 
 /* Tarjetas */
 .card {
-    border: none;
+    border: 1px solid var(--color-borde);
     border-radius: 1rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: var(--color-fondo-secundario);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: var(--color-texto);
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 /* Botones */
 .btn-primary {
-    background-color: var(--color-primario);
-    border-color: var(--color-primario);
+    background-color: var(--color-verde);
+    border-color: var(--color-verde);
     color: #fff;
     font-weight: 500;
     transition: background-color 0.3s ease;
 }
 
 .btn-primary:hover {
-    background-color: #3399ff;
-    border-color: #3399ff;
+    background-color: var(--color-verde-hover);
+    border-color: var(--color-verde-hover);
 }
 
 /* Footer */
@@ -80,7 +88,7 @@ footer {
     padding: 1rem 0;
     text-align: center;
     font-size: 0.9rem;
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Enlaces del footer */
@@ -94,19 +102,36 @@ footer a:hover {
 }
 
 /* Tablas */
+.table {
+    color: var(--color-texto);
+}
+
 .table thead {
-    background-color: var(--color-primario);
-    color: white;
+    background-color: var(--color-fondo-secundario);
+    color: var(--color-texto);
+    border-bottom: 2px solid var(--color-borde);
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
-    background-color: #eaf3ff;
+    background-color: #161b22;
 }
 
 /* Formularios */
-.form-control:focus {
+.form-control,
+.form-select {
+    background-color: var(--color-fondo-secundario);
+    color: var(--color-texto);
+    border-color: var(--color-borde);
+}
+
+.form-control:focus,
+.form-select:focus {
     border-color: var(--color-primario);
-    box-shadow: 0 0 0 0.2rem rgba(72, 136, 238, 0.25);
+    box-shadow: 0 0 0 0.2rem rgba(88, 166, 255, 0.25);
+}
+
+.form-control::placeholder {
+    color: var(--color-placeholder);
 }
 
 /* Títulos */
@@ -114,9 +139,46 @@ h1, h2, h3 {
     color: var(--color-primario);
     font-weight: 600;
 }
-/* Estilos personalizados para documentos */
 
-/* Estilos personalizados para documentos */
+/* Estilo personalizado para cada ítem de docente */
+.docente-item {
+    background-color: var(--color-fondo-secundario);
+    border: 1px solid var(--color-borde);
+    color: var(--color-texto);
+    border-radius: 0.75rem;
+    margin-bottom: 0.75rem;
+    padding: 1rem 1.25rem;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.docente-item:hover {
+    background-color: #21262d; /* tono más claro dentro del mismo esquema */
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.docente-item h5 {
+    color: var(--color-primario);
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+}
+
+.docente-item small.text-muted {
+    color: var(--color-texto) !important;
+}
+
+/* Botones dentro de los ítems */
+.docente-item .btn-group .btn {
+    border-radius: 0.375rem;
+    font-weight: 500;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.85rem;
+}
+
+/* Ajuste visual entre botones */
+.docente-item .btn + .btn {
+    margin-left: 0.4rem;
+}
 
 
 
