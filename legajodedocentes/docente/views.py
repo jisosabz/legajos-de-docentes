@@ -1,60 +1,30 @@
 from django.db.models import Q
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-
 from django.views.decorators.http import require_POST
 
 from .forms import DocenteForm, DocumentoForm
 from .models import Docente, Documento
 
+# ------------------ DOCENTES ------------------
+
 def index(request):
-    # para listar todos los docentes o si se ingresa su nombre o su ci para filtrarlos por ello
     query = request.GET.get('search', '')
     docentes = Docente.objects.filter(
-        Q(nombre__icontains=query) |Q(apellido__icontains=query)| Q(ci__icontains=query) | Q(nivel__nombre__icontains=query)
+        Q(nombre__icontains=query) |
+        Q(apellido__icontains=query) |
+        Q(ci__icontains=query) |
+        Q(nivel__nombre__icontains=query)
     )
-    context = {
-        'docentes': docentes
-    }
-    return render(request, 'docentes/index.html', context)
+    return render(request, 'docentes/index.html', {'docentes': docentes})
 
-def view(request,id):
-    docente = Docente.objects.get(id=id)
-    context = {
-        'docente': docente
-    }
-    return render(request,'docentes/details.html', context)
-
-def edit(request, id):
-    docente = Docente.objects.get(id=id)
-    # Cuando la página se carga inicialmente para mostrar el formulario de edición con los datos del contacto.
-    if request.method == 'GET':
-        form = DocenteForm(instance=docente)
-        context = {
-            'form': form,
-            'id': id,
-        }
-        return render(request, 'docentes/edit.html', context)
-    #  Cuando el usuario envía el formulario con los datos editados para ser guardados en la base de datos.
-    elif request.method == 'POST':
-        form = DocenteForm(request.POST, instance=docente)
-        form.save()
-        context = {
-            'form': form,
-            'id': id,
-        }
-        messages.success(request,'Docente Actualizado Correctamente')
-        return render(request, 'docentes/edit.html', context)
-    else:
-        return HttpResponse('algo salio mal')
+def view(request, id):
+    docente = get_object_or_404(Docente, id=id)
+    return render(request, 'docentes/details.html', {'docente': docente})
 
 def create(request):
-    if request.method == 'GET':
-        form = DocenteForm()
-        return render(request, 'docentes/create.html', {'form': form})
-
-    elif request.method == 'POST':
+    if request.method == 'POST':
         form = DocenteForm(request.POST)
         if form.is_valid():
             form.save()
@@ -62,70 +32,78 @@ def create(request):
             return redirect('docente')
         else:
             messages.error(request, 'Hubo un error al agregar el docente. Revisa los campos.')
+    else:
+        form = DocenteForm()
 
-        return render(request, 'docentes/create.html', {'form': form})
+    return render(request, 'docentes/create.html', {'form': form})
 
-    return HttpResponse('Método no soportado.')
+def edit(request, id):
+    docente = get_object_or_404(Docente, id=id)
+
+    if request.method == 'POST':
+        form = DocenteForm(request.POST, instance=docente)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Docente actualizado correctamente.')
+        else:
+            messages.error(request, 'Revisá los errores del formulario.')
+    else:
+        form = DocenteForm(instance=docente)
+
+    return render(request, 'docentes/edit.html', {'form': form, 'id': id})
 
 @require_POST
 def delete(request, id):
-    docente = Docente.objects.get(id=id)
+    docente = get_object_or_404(Docente, id=id)
     docente.delete()
     messages.success(request, 'Docente eliminado correctamente.')
     return redirect('docente')
 
-# aca empieza todo lo relacionado a documentos
+# ------------------ DOCUMENTOS ------------------
+
 def documento(request):
     query = request.GET.get('search', '')
     documentos = Documento.objects.filter(
-        Q(nombre__icontains=query) | Q(docente__nombre__icontains=query)|Q(docente__apellido__icontains=query) | Q(docente__ci__icontains=query) | Q(tipo_documento__nombre__icontains=query)
+        Q(nombre__icontains=query) |
+        Q(docente__nombre__icontains=query) |
+        Q(docente__apellido__icontains=query) |
+        Q(docente__ci__icontains=query) |
+        Q(tipo_documento__nombre__icontains=query)
     )
-    context = {
-        'documentos': documentos
-    }
-    return render(request, 'documentos/index.html', context)
+    return render(request, 'documentos/index.html', {'documentos': documentos})
 
 def create_document(request):
-    if request.method == 'GET':
-        form = DocumentoForm()
-        return render(request, 'documentos/create.html', {'form': form})
-    elif request.method == 'POST':
-        form = DocumentoForm(request.POST, request.FILES)  # <- para cargar archivos
+    if request.method == 'POST':
+        form = DocumentoForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, 'Documento agregado correctamente.')
             return redirect('documento')
         else:
             messages.error(request, 'Hubo un error al agregar el documento. Revisa los campos.')
-
-        return render(request, 'documentos/create.html', {'form': form})
     else:
-        return HttpResponse('Método no soportado.')
+        form = DocumentoForm()
+
+    return render(request, 'documentos/create.html', {'form': form})
 
 def edit_document(request, id):
-    documento = Documento.objects.get(id=id)
+    documento = get_object_or_404(Documento, id=id)
 
-    if request.method == 'GET':
-        form = DocumentoForm(instance=documento)
-        return render(request, 'documentos/edit.html', {'form': form, 'id': id})
-
-    elif request.method == 'POST':
+    if request.method == 'POST':
         form = DocumentoForm(request.POST, request.FILES, instance=documento)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Documento Actualizado Correctamente')
+            messages.success(request, 'Documento actualizado correctamente.')
         else:
-            print(form.errors)  # Esto mostrará los errores en consola para ayudarte a depurar
             messages.error(request, 'Revisá los errores del formulario.')
-
-        return render(request, 'documentos/edit.html', {'form': form, 'id': id})
-
     else:
-        return HttpResponse('Método no soportado', status=405)
+        form = DocumentoForm(instance=documento)
+
+    return render(request, 'documentos/edit.html', {'form': form, 'id': id})
 
 @require_POST
 def delete_document(request, id):
-    documento = Documento.objects.get(id=id)
+    documento = get_object_or_404(Documento, id=id)
     documento.delete()
     messages.success(request, 'Documento eliminado correctamente.')
     return redirect('documento')
