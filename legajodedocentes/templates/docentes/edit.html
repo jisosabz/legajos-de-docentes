@@ -20,11 +20,11 @@
         </div>
     {% endif %}
 
-    <form action="{% url 'docente_edit' id %}" method="post" class="p-4 shadow rounded-4" style="background-color: var(--color-fondo-secundario); color: var(--color-texto);">
+    <form action="{% url 'docente_edit' id %}" method="post" class="form-container">
         {% csrf_token %}
         {% for field in form %}
             <div class="mb-3">
-                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                <label for="{{ field.id_for_label }}" class="form-label text-light">{{ field.label }}</label>
                 {{ field }}
                 {% if field.help_text %}
                     <div class="form-text text-light">{{ field.help_text }}</div>

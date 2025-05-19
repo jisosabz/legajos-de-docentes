@@ -20,6 +20,7 @@ class DocenteForm(ModelForm):
             }),
             'nivel': Select(attrs={'class': 'form-select'}),
         }
+from django.core.exceptions import ValidationError
 
 class DocumentoForm(ModelForm):
     class Meta:
@@ -31,7 +32,7 @@ class DocumentoForm(ModelForm):
                 'type': 'date',
                 'class': 'form-control'
             }),
-            'fecha_vencimiento': DateInput( format='%Y-%m-%d', attrs={
+            'fecha_vencimiento': DateInput(format='%Y-%m-%d', attrs={
                 'type': 'date',
                 'class': 'form-control'
             }),
@@ -39,3 +40,13 @@ class DocumentoForm(ModelForm):
             'docente': Select(attrs={'class': 'form-select'}),
             'tipo_documento': Select(attrs={'class': 'form-select'}),
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        fecha_emision = cleaned_data.get('fecha_emision')
+        fecha_vencimiento = cleaned_data.get('fecha_vencimiento')
+
+        if fecha_emision and fecha_vencimiento:
+            if fecha_vencimiento < fecha_emision:
+                raise ValidationError("La fecha de vencimiento no puede ser anterior a la fecha de emisión.")
+

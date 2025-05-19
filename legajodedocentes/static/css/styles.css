@@ -1,3 +1,4 @@
+
 /* Variables base - Tema oscuro GitHub */
 :root {
     --color-primario: #58a6ff;
@@ -29,14 +30,14 @@ body {
     flex-direction: column;
 }
 
-/* Contenedor principal para empujar el footer al fondo */
+/* Contenedor principal */
 .wrapper {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-/* Navbar personalizado */
+/* Navbar */
 .navbar {
     background-color: var(--color-fondo-secundario) !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
@@ -62,7 +63,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
-/* Estilo del contenido principal */
+/* Contenido principal */
 main {
     padding: 2rem;
     flex: 1;
@@ -97,7 +98,7 @@ main {
     border-color: var(--color-verde-hover);
 }
 
-/* Footer fijo abajo */
+/* Footer */
 footer {
     background-color: var(--color-footer);
     color: var(--color-texto);
@@ -108,7 +109,6 @@ footer {
     margin-top: auto;
 }
 
-/* Enlaces del footer */
 footer a {
     color: var(--color-primario);
     text-decoration: none;
@@ -130,24 +130,26 @@ footer a:hover {
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
-    background-color: #161b22;
-}
-
-/* Formularios */
-.form-control,
-.form-select {
     background-color: var(--color-fondo-secundario);
-    color: var(--color-texto);
-    border-color: var(--color-borde);
 }
 
+/* Formularios y campos */
+.form-control,
+.form-select,
 .form-control:focus,
-.form-select:focus {
-    border-color: var(--color-primario);
-    box-shadow: 0 0 0 0.2rem rgba(88, 166, 255, 0.25);
+.form-select:focus,
+:is(input, select, textarea).form-control:focus {
+    background-color: var(--color-fondo-secundario) !important;
+    color: var(--color-texto) !important;
+    border-color: var(--color-borde) !important;
+    box-shadow: none !important;
 }
 
 .form-control::placeholder {
+    color: var(--color-placeholder);
+}
+
+::placeholder {
     color: var(--color-placeholder);
 }
 
@@ -157,7 +159,7 @@ h1, h2, h3 {
     font-weight: 600;
 }
 
-/* Estilo personalizado para cada ítem de docente */
+/* Docente item */
 .docente-item {
     background-color: var(--color-fondo-secundario);
     border: 1px solid var(--color-borde);
@@ -184,7 +186,6 @@ h1, h2, h3 {
     color: var(--color-texto) !important;
 }
 
-/* Botones dentro de los ítems */
 .docente-item .btn-group .btn {
     border-radius: 0.375rem;
     font-weight: 500;
@@ -192,37 +193,11 @@ h1, h2, h3 {
     font-size: 0.85rem;
 }
 
-/* Ajuste visual entre botones */
 .docente-item .btn + .btn {
     margin-left: 0.4rem;
 }
 
-/* Inputs, selects y textareas personalizados */
-input.form-control,
-select.form-select,
-textarea.form-control {
-    background-color: var(--color-fondo-secundario) !important;
-    color: var(--color-texto) !important;
-    border: 1px solid var(--color-borde) !important;
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
-}
-
-/* Al hacer foco */
-input.form-control:focus,
-select.form-select:focus,
-textarea.form-control:focus {
-    background-color: var(--color-fondo) !important;
-    color: var(--color-texto) !important;
-    border-color: var(--color-primario) !important;
-    box-shadow: 0 0 0 0.2rem rgba(88, 166, 255, 0.25) !important;
-}
-
-/* Placeholder (texto dentro del input antes de escribir) */
-::placeholder {
-    color: var(--color-placeholder);
-}
-
+/* Grupos de inputs */
 .input-group .form-control {
     background-color: var(--color-fondo-secundario) !important;
     color: var(--color-texto) !important;
@@ -232,8 +207,6 @@ textarea.form-control:focus {
 }
 
 .input-group .form-control:focus {
-    background-color: var(--color-fondo-secundario) !important;
-    color: var(--color-texto) !important;
     border-color: var(--color-primario) !important;
     box-shadow: 0 0 0 0.2rem rgba(88, 166, 255, 0.25);
     outline: none;
@@ -255,38 +228,30 @@ textarea.form-control:focus {
 .input-group input::placeholder {
     color: var(--color-placeholder);
 }
-form {
-    background-color: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
+
+/* Contenedor de formularios */
+.form-container {
+    background-color: var(--color-fondo-secundario);
+    color: var(--color-texto);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Quitar bordes extra */
-input,
-textarea,
-select,
-button {
-    border-width: 1px !important;
-    border-style: solid !important;
-    border-color: var(--color-borde) !important;
-    background-color: var(--color-fondo-secundario) !important;
-    color: var(--color-texto) !important;
+.form-container input,
+.form-container select,
+.form-container textarea {
+    background-color: var(--color-fondo-secundario);
+    color: var(--color-texto);
+    border: 1px solid var(--color-borde);
 }
 
-input:focus,
-textarea:focus,
-select:focus {
-    border-color: var(--color-primario) !important;
-    box-shadow: none !important;
-    outline: none !important;
-}
-
-/* Evitar que Bootstrap u otros agreguen fondo blanco en .form-control */
-.form-control,
-.form-control:focus {
-    background-color: var(--color-fondo-secundario) !important;
-    border-color: var(--color-borde) !important;
-    color: var(--color-texto) !important;
-    box-shadow: none !important;
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    background-color: var(--color-fondo);
+    border-color: var(--color-primario);
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
 }
