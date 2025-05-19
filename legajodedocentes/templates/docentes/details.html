@@ -15,16 +15,35 @@
             </div>
 
             {# Detalles del docente #}
-            <div class="card border-0 shadow-sm">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><strong>Nombre:</strong> {{ docente.nombre }}</li>
-                    <li class="list-group-item"><strong>Apellido:</strong> {{ docente.apellido }}</li>
-                    <li class="list-group-item"><strong>Cédula:</strong> {{ docente.ci }}</li>
-                    <li class="list-group-item"><strong>Email:</strong> {{ docente.email }}</li>
-                    <li class="list-group-item"><strong>Teléfono:</strong> {{ docente.telefono }}</li>
-                    <li class="list-group-item"><strong>Fecha Ingreso:</strong> {{ docente.fecha_ingreso }}</li>
-                    <li class="list-group-item"><strong>Nivel:</strong> {{ docente.nivel }}</li>
-                </ul>
+            <div class="card p-4 border-0 shadow-sm">
+                <div class="docente-item">
+                    <h5>Nombre</h5>
+                    <span>{{ docente.nombre }}</span>
+                </div>
+                <div class="docente-item">
+                    <h5>Apellido</h5>
+                    <span>{{ docente.apellido }}</span>
+                </div>
+                <div class="docente-item">
+                    <h5>Cédula</h5>
+                    <span>{{ docente.ci }}</span>
+                </div>
+                <div class="docente-item">
+                    <h5>Email</h5>
+                    <span>{{ docente.email }}</span>
+                </div>
+                <div class="docente-item">
+                    <h5>Teléfono</h5>
+                    <span>{{ docente.telefono }}</span>
+                </div>
+                <div class="docente-item">
+                    <h5>Fecha de Ingreso</h5>
+                    <span>{{ docente.fecha_ingreso }}</span>
+                </div>
+                <div class="docente-item">
+                    <h5>Nivel</h5>
+                    <span>{{ docente.nivel }}</span>
+                </div>
             </div>
 
         </div>

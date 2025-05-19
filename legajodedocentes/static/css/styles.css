@@ -15,10 +15,25 @@
 }
 
 /* Reset básico */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: var(--color-fondo);
     color: var(--color-secundario);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Contenedor principal para empujar el footer al fondo */
+.wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Navbar personalizado */
@@ -50,6 +65,7 @@ body {
 /* Estilo del contenido principal */
 main {
     padding: 2rem;
+    flex: 1;
 }
 
 /* Tarjetas */
@@ -81,7 +97,7 @@ main {
     border-color: var(--color-verde-hover);
 }
 
-/* Footer */
+/* Footer fijo abajo */
 footer {
     background-color: var(--color-footer);
     color: var(--color-texto);
@@ -89,6 +105,7 @@ footer {
     text-align: center;
     font-size: 0.9rem;
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+    margin-top: auto;
 }
 
 /* Enlaces del footer */
@@ -152,7 +169,7 @@ h1, h2, h3 {
 }
 
 .docente-item:hover {
-    background-color: #21262d; /* tono más claro dentro del mismo esquema */
+    background-color: #21262d;
     transform: translateY(-3px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
@@ -180,5 +197,61 @@ h1, h2, h3 {
     margin-left: 0.4rem;
 }
 
+/* Inputs, selects y textareas personalizados */
+input.form-control,
+select.form-select,
+textarea.form-control {
+    background-color: var(--color-fondo-secundario) !important;
+    color: var(--color-texto) !important;
+    border: 1px solid var(--color-borde) !important;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
 
+/* Al hacer foco */
+input.form-control:focus,
+select.form-select:focus,
+textarea.form-control:focus {
+    background-color: var(--color-fondo) !important;
+    color: var(--color-texto) !important;
+    border-color: var(--color-primario) !important;
+    box-shadow: 0 0 0 0.2rem rgba(88, 166, 255, 0.25) !important;
+}
 
+/* Placeholder (texto dentro del input antes de escribir) */
+::placeholder {
+    color: var(--color-placeholder);
+}
+
+.input-group .form-control {
+    background-color: var(--color-fondo-secundario) !important;
+    color: var(--color-texto) !important;
+    border: 1px solid var(--color-borde) !important;
+    border-radius: 0.5rem 0 0 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.input-group .form-control:focus {
+    background-color: var(--color-fondo-secundario) !important;
+    color: var(--color-texto) !important;
+    border-color: var(--color-primario) !important;
+    box-shadow: 0 0 0 0.2rem rgba(88, 166, 255, 0.25);
+    outline: none;
+}
+
+.input-group .btn-primary {
+    background-color: var(--color-primario);
+    color: #fff;
+    border: 1px solid var(--color-primario);
+    border-radius: 0 0.5rem 0.5rem 0;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.input-group .btn-primary:hover {
+    background-color: var(--color-hover);
+    border-color: var(--color-hover);
+}
+
+.input-group input::placeholder {
+    color: var(--color-placeholder);
+}
