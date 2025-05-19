@@ -21,7 +21,7 @@
         </div>
     {% endif %}
 
-    <form action="{% url 'edit_document' id %}" method="post" enctype="multipart/form-data" class="p-4 shadow rounded bg-white">
+    <form action="{% url 'edit_document' id %}" method="post" enctype="multipart/form-data" class="p-4 shadow rounded bg-dark border border-secondary">
         {% csrf_token %}
 
         {# Errores no relacionados a campos específicos #}
@@ -38,7 +38,7 @@
                 <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
                 {{ field }}
                 {% if field.help_text %}
-                    <div class="form-text">{{ field.help_text }}</div>
+                    <div class="form-text text-muted">{{ field.help_text }}</div>
                 {% endif %}
                 {% for error in field.errors %}
                     <div class="text-danger small">{{ error }}</div>

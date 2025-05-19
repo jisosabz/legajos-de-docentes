@@ -255,3 +255,38 @@ textarea.form-control:focus {
 .input-group input::placeholder {
     color: var(--color-placeholder);
 }
+form {
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Quitar bordes extra */
+input,
+textarea,
+select,
+button {
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-color: var(--color-borde) !important;
+    background-color: var(--color-fondo-secundario) !important;
+    color: var(--color-texto) !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--color-primario) !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Evitar que Bootstrap u otros agreguen fondo blanco en .form-control */
+.form-control,
+.form-control:focus {
+    background-color: var(--color-fondo-secundario) !important;
+    border-color: var(--color-borde) !important;
+    color: var(--color-texto) !important;
+    box-shadow: none !important;
+}
