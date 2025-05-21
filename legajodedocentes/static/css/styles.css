@@ -255,3 +255,16 @@ h1, h2, h3 {
     outline: none;
     box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
 }
+/* Ajuste para campos oscuros en formularios */
+.card-body input,
+.card-body select,
+.card-body textarea {
+    background-color: #343a40;
+    color: #f8f9fa;
+    border: 1px solid #6c757d;
+}
+
+.card-body input::placeholder,
+.card-body textarea::placeholder {
+    color: #adb5bd;
+}
