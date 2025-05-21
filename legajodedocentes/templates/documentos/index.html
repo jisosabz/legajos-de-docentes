@@ -72,18 +72,29 @@
                             <div class="mt-auto">
                                 <div class="d-flex justify-content-between">
                                     {% if documento.archivo %}
-                                        <a href="{{ documento.archivo.url }}" target="_blank" class="btn btn-outline-primary btn-sm">Ver</a>
+                                        <a href="{{ documento.archivo.url }}" target="_blank" class="btn btn-sm btn-light border">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
                                     {% else %}
-                                        <button class="btn btn-outline-secondary btn-sm" disabled>Sin archivo</button>
+                                        <button class="btn btn-sm btn-light border text-muted" disabled>
+                                            <i class="bi bi-eye-slash"></i>
+                                        </button>
                                     {% endif %}
-                                    <a href="{% url 'edit_document' id=documento.id %}" class="btn btn-outline-secondary btn-sm">Editar</a>
-                                    <form action="{% url 'delete_document' id=documento.id %}" method="post" onsubmit="return confirm('¿Estás seguro que deseas eliminar este docente?');" style="display: inline;">
+
+                                    <a href="{% url 'edit_document' id=documento.id %}" class="btn btn-sm btn-light border">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+
+                                    <form action="{% url 'delete_document' id=documento.id %}" method="post" onsubmit="return confirm('¿Estás seguro que deseas eliminar este documento?');" style="display: inline;">
                                         {% csrf_token %}
-                                        <button type="submit" class="btn btn-outline-danger btn-sm">Borrar</button>
+                                        <button type="submit" class="btn btn-sm btn-light border text-danger">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
                                     </form>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             {% endfor %}

@@ -21,8 +21,8 @@
       {% include 'layout/partials/barra_de_busqueda.html' %}
     </form>
 
-    <div class="mb-4">
-      <a href="{% url 'docente' %}" class="btn btn-outline-primary btn-sm me-2">Ver Todos</a>
+    <div class="mb-4 d-flex justify-content-start gap-2">
+      <a href="{% url 'docente' %}" class="btn btn-outline-primary btn-sm">Ver Todos</a>
       <a href="{% url 'docente_create' %}" class="btn btn-primary btn-sm">Añadir Docente</a>
     </div>
 
@@ -35,12 +35,18 @@
               <small class="text-muted">CI: {{ docente.ci }}</small><br>
               <small class="text-muted">Email: {{ docente.email }}</small>
             </a>
-            <div class="btn-group" role="group">
-              <a href="{% url 'docente_view' id=docente.id %}" class="btn btn-outline-primary btn-sm">Ver</a>
-              <a href="{% url 'docente_edit' id=docente.id %}" class="btn btn-outline-secondary btn-sm">Editar</a>
+            <div class="d-flex gap-2">
+              <a href="{% url 'docente_view' id=docente.id %}" class="btn btn-sm btn-light border" title="Ver">
+                <i class="bi bi-eye"></i>
+              </a>
+              <a href="{% url 'docente_edit' id=docente.id %}" class="btn btn-sm btn-light border" title="Editar">
+                <i class="bi bi-pencil"></i>
+              </a>
               <form action="{% url 'docente_delete' id=docente.id %}" method="post" onsubmit="return confirm('¿Estás seguro que deseas eliminar este docente?');" class="d-inline">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-outline-danger btn-sm">Borrar</button>
+                <button type="submit" class="btn btn-sm btn-light border text-danger" title="Borrar">
+                  <i class="bi bi-trash"></i>
+                </button>
               </form>
             </div>
           </div>
