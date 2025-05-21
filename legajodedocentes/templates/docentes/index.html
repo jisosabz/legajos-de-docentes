@@ -3,7 +3,6 @@
 {% block title %}Docentes{% endblock %}
 
 {% block content %}
-  {# mensajes #}
   {% if messages %}
     <div class="container mt-4">
       {% for message in messages %}
@@ -18,31 +17,28 @@
   <div class="container mt-4">
     <h2 class="mb-4">Lista de Docentes</h2>
 
-    {# barra de búsqueda de docentes #}
     <form method="get" action="{% url 'docente' %}" class="form-search mb-4">
       {% include 'layout/partials/barra_de_busqueda.html' %}
     </form>
 
-    {# acciones principales #}
-    <div class="acciones mt-4 mb-4">
+    <div class="mb-4">
       <a href="{% url 'docente' %}" class="btn btn-outline-primary btn-sm me-2">Ver Todos</a>
       <a href="{% url 'docente_create' %}" class="btn btn-primary btn-sm">Añadir Docente</a>
     </div>
 
-    {# listado de docentes #}
     {% if docentes %}
       <div class="list-group">
         {% for docente in docentes %}
           <div class="list-group-item docente-item d-flex justify-content-between align-items-center">
-            <div>
+            <a href="{% url 'docente_view' id=docente.id %}" class="flex-grow-1 text-decoration-none text-reset me-3">
               <h5 class="mb-1">{{ docente.nombre }} {{ docente.apellido }}</h5>
               <small class="text-muted">CI: {{ docente.ci }}</small><br>
               <small class="text-muted">Email: {{ docente.email }}</small>
-            </div>
+            </a>
             <div class="btn-group" role="group">
               <a href="{% url 'docente_view' id=docente.id %}" class="btn btn-outline-primary btn-sm">Ver</a>
               <a href="{% url 'docente_edit' id=docente.id %}" class="btn btn-outline-secondary btn-sm">Editar</a>
-              <form action="{% url 'docente_delete' id=docente.id %}" method="post" onsubmit="return confirm('¿Estás seguro que deseas eliminar este docente?');" style="display: inline;">
+              <form action="{% url 'docente_delete' id=docente.id %}" method="post" onsubmit="return confirm('¿Estás seguro que deseas eliminar este docente?');" class="d-inline">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-outline-danger btn-sm">Borrar</button>
               </form>
