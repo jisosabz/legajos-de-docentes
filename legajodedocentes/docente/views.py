@@ -107,3 +107,7 @@ def delete_document(request, id):
     documento.delete()
     messages.success(request, 'Documento eliminado correctamente.')
     return redirect('documento')
+
+
+def notificacion(request):
+    return HttpResponse('Notificaciones')

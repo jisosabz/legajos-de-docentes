@@ -1,4 +1,3 @@
-
 /* Variables base - Tema oscuro GitHub */
 :root {
     --color-primario: #58a6ff;
@@ -13,6 +12,14 @@
     --color-placeholder: #8b949e;
     --color-verde: #238636;
     --color-verde-hover: #2ea043;
+    --color-fondo-claro: #21262d;
+    --color-input-dark: #343a40;
+    --color-input-border: #6c757d;
+    --color-placeholder-alt: #adb5bd;
+    --color-shadow: rgba(0, 0, 0, 0.3);
+    --color-shadow-light: rgba(0, 0, 0, 0.2);
+    --color-shadow-input-focus: rgba(88, 166, 255, 0.25);
+    --color-shadow-form-focus: rgba(0,123,255,.25);
 }
 
 /* Reset básico */
@@ -40,7 +47,7 @@ body {
 /* Navbar */
 .navbar {
     background-color: var(--color-fondo-secundario) !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 10px var(--color-shadow-light);
 }
 
 .navbar-brand,
@@ -55,11 +62,11 @@ body {
 }
 
 .navbar-nav .nav-link.active {
-    color: #ffd !important;
+    color: var(--color-secundario) !important;
 }
 
 .navbar.scrolled {
-    background-color: #1a1f24 !important;
+    background-color: var(--color-fondo-claro) !important;
     transition: background-color 0.3s ease;
 }
 
@@ -74,14 +81,14 @@ main {
     border: 1px solid var(--color-borde);
     border-radius: 1rem;
     background-color: var(--color-fondo-secundario);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px var(--color-shadow-light);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     color: var(--color-texto);
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 16px var(--color-shadow);
 }
 
 /* Botones */
@@ -105,7 +112,7 @@ footer {
     padding: 1rem 0;
     text-align: center;
     font-size: 0.9rem;
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 -2px 8px var(--color-shadow-light);
     margin-top: auto;
 }
 
@@ -171,9 +178,9 @@ h1, h2, h3 {
 }
 
 .docente-item:hover {
-    background-color: #21262d;
+    background-color: var(--color-fondo-claro);
     transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px var(--color-shadow);
 }
 
 .docente-item h5 {
@@ -208,7 +215,7 @@ h1, h2, h3 {
 
 .input-group .form-control:focus {
     border-color: var(--color-primario) !important;
-    box-shadow: 0 0 0 0.2rem rgba(88, 166, 255, 0.25);
+    box-shadow: 0 0 0 0.2rem var(--color-shadow-input-focus);
     outline: none;
 }
 
@@ -235,7 +242,7 @@ h1, h2, h3 {
     color: var(--color-texto);
     padding: 2rem;
     border-radius: 1rem;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 20px var(--color-shadow);
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -253,18 +260,19 @@ h1, h2, h3 {
     background-color: var(--color-fondo);
     border-color: var(--color-primario);
     outline: none;
-    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    box-shadow: 0 0 0 0.2rem var(--color-shadow-form-focus);
 }
+
 /* Ajuste para campos oscuros en formularios */
 .card-body input,
 .card-body select,
 .card-body textarea {
-    background-color: #343a40;
-    color: #f8f9fa;
-    border: 1px solid #6c757d;
+    background-color: var(--color-input-dark);
+    color: var(--color-texto);
+    border: 1px solid var(--color-input-border);
 }
 
 .card-body input::placeholder,
 .card-body textarea::placeholder {
-    color: #adb5bd;
+    color: var(--color-placeholder-alt);
 }
