@@ -1,14 +1,54 @@
 {% extends 'layout/base.html' %}
-{% block title %}Notificaciones{% endblock %}
+
+{% block title %}
+    Notificaciones
+{% endblock %}
+
 {% block content %}
-    <h2>Notificaciones de documentos vencidos</h2>
-    <ul>
-      {% for noti in notificaciones %}
-        <li>
-          El documento <strong>{{ noti.documento.nombre }}</strong> del docente <strong>{{ noti.docente.nombre }}</strong> venció. Estado: <em>{{ noti.estado }}</em>
-        </li>
-      {% empty %}
-        <li>No hay notificaciones pendientes.</li>
-      {% endfor %}
-    </ul>
+<div class="container mt-4">
+    <h2 class="mb-4">Notificaciones de documentos vencidos</h2>
+
+    {% if notificaciones %}
+        <div class="row">
+            {% for noti in notificaciones %}
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">
+                                <i class="bi bi-exclamation-triangle-fill text-danger me-2"></i>
+                                Documento vencido
+                            </h5>
+                            <p class="card-text mb-1">
+                                <strong>Documento:</strong> {{ noti.documento.nombre }}
+                            </p>
+                            <p class="card-text mb-1">
+                                <strong>Docente:</strong> {{ noti.docente.nombre }} {{ noti.docente.apellido }}
+                            </p>
+                            <p class="card-text mb-3">
+                                <strong>Estado:</strong>
+                                <span class="badge bg-danger">{{ noti.estado }}</span>
+                            </p>
+
+                            <div class="mt-auto d-flex justify-content-end">
+                                <a href="{# {% url 'ver_documento' id=noti.documento.id %} #}" class="btn btn-sm btn-light border me-2">
+                                    <i class="bi bi-eye"></i> Ver documento
+                                </a>
+                                <form action="{# {% url 'eliminar_notificacion' id=noti.id %} #}" method="post" onsubmit="return confirm('¿Deseas eliminar esta notificación?');">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-light border text-danger">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-success text-center" role="alert">
+            ✅ No hay notificaciones pendientes.
+        </div>
+    {% endif %}
+</div>
 {% endblock %}
