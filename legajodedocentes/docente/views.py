@@ -5,7 +5,9 @@ from django.contrib import messages
 from django.views.decorators.http import require_POST
 
 from .forms import DocenteForm, DocumentoForm
-from .models import Docente, Documento
+from .models import Docente, Documento, Notificacion
+from datetime import date
+from .utils import generar_notificaciones_vencidas
 
 # ------------------ DOCENTES ------------------
 
@@ -110,4 +112,8 @@ def delete_document(request, id):
 
 
 def notificacion(request):
-    return HttpResponse('Notificaciones')
+    generar_notificaciones_vencidas()
+    notificaciones = Notificacion.objects.filter(estado='Pendiente').order_by('-fecha_envio')
+    return render(request, 'notificaciones/index.html', {
+        'notificaciones': notificaciones
+    })

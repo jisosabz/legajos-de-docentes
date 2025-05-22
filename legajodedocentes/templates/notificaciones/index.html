@@ -1,0 +1,14 @@
+{% extends 'layout/base.html' %}
+{% block title %}Notificaciones{% endblock %}
+{% block content %}
+    <h2>Notificaciones de documentos vencidos</h2>
+    <ul>
+      {% for noti in notificaciones %}
+        <li>
+          El documento <strong>{{ noti.documento.nombre }}</strong> del docente <strong>{{ noti.docente.nombre }}</strong> venció. Estado: <em>{{ noti.estado }}</em>
+        </li>
+      {% empty %}
+        <li>No hay notificaciones pendientes.</li>
+      {% endfor %}
+    </ul>
+{% endblock %}
