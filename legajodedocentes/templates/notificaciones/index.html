@@ -30,15 +30,9 @@
                             </p>
 
                             <div class="mt-auto d-flex justify-content-end">
-                                <a href="{# {% url 'ver_documento' id=noti.documento.id %} #}" class="btn btn-sm btn-light border me-2">
-                                    <i class="bi bi-eye"></i> Ver documento
+                                <a href="{% url 'edit_document' id=noti.documento.id %}" class="btn btn-sm btn-light border me-2">
+                                    <i class="bi bi-pencil"></i> Editar Documento
                                 </a>
-                                <form action="{# {% url 'eliminar_notificacion' id=noti.id %} #}" method="post" onsubmit="return confirm('¿Deseas eliminar esta notificación?');">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-sm btn-light border text-danger">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </form>
                             </div>
                         </div>
                     </div>
