@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.decorators.http import require_POST
+from django.utils import timezone
 
 from .forms import DocenteForm, DocumentoForm
 from .models import Docente, Documento, Notificacion
@@ -90,11 +91,19 @@ def create_document(request):
 
 def edit_document(request, id):
     documento = get_object_or_404(Documento, id=id)
+    fecha_anterior = documento.fecha_vencimiento  # Guardamos la fecha antes de editar
 
     if request.method == 'POST':
         form = DocumentoForm(request.POST, request.FILES, instance=documento)
         if form.is_valid():
-            form.save()
+            nuevo_doc = form.save()
+            # Comprobamos si la nueva fecha de vencimiento es válida (renovado)
+            if nuevo_doc.fecha_vencimiento and nuevo_doc.fecha_vencimiento > date.today():
+                noti = Notificacion.objects.filter(documento=nuevo_doc, estado='Pendiente').first()
+                if noti:
+                    noti.estado = 'Renovado'
+                    noti.fecha_resolucion = timezone.now()
+                    noti.save()
             messages.success(request, 'Documento actualizado correctamente.')
         else:
             messages.error(request, 'Revisá los errores del formulario.')
@@ -102,6 +111,7 @@ def edit_document(request, id):
         form = DocumentoForm(instance=documento)
 
     return render(request, 'documentos/edit.html', {'form': form, 'id': id})
+
 
 @require_POST
 def delete_document(request, id):
