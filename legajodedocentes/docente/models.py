@@ -100,7 +100,7 @@ class Notificacion(models.Model):
     documento = models.ForeignKey(Documento, on_delete=models.CASCADE, null=True)
     fecha_envio = models.DateTimeField(auto_now_add=True)
     estado = models.CharField(max_length=20, choices=ESTADO_OPCIONES, default='Pendiente')
-    fecha_resolucion = models.DateTimeField(null=True, blank=True)  # <- este campo nuevo
+    fecha_resolucion = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return f"Notificación: {self.documento.nombre if self.documento else 'Sin documento'} - {self.estado}"
